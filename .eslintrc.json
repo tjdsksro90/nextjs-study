@@ -1,6 +1,48 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "@next/next/no-img-element": "off"
+    "@next/next/no-img-element": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "type",
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "unknown"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react*",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@recoil/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@pages/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@components/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "alphabetize": {
+          "caseInsensitive": true,
+          "order": "asc"
+        },
+        "pathGroupsExcludedImportTypes": []
+      }
+    ]
   }
 }
