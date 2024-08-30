@@ -1,6 +1,12 @@
-import Link from "next/link";
+import Link from 'next/link';
+import NavLink from './nav-link';
 
 export default function MainHeader() {
+  const LISTS = [
+    { href: '/news', title: 'News' },
+    { href: '/archive', title: 'Archive' },
+  ];
+
   return (
     <header id="main-header">
       <div id="logo">
@@ -8,9 +14,11 @@ export default function MainHeader() {
       </div>
       <nav>
         <ul>
-          <li>
-            <Link href="/news">News</Link>
-          </li>
+          {LISTS.map(nav => (
+            <li>
+              <NavLink href={nav.href}>{nav.title}</NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
