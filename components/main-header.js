@@ -15,7 +15,7 @@ export default function MainHeader() {
       <nav>
         <ul>
           {NAV_LIST.map(nav => (
-            <li>
+            <li key={nav}>
               <NavLink href={nav.href}>{nav.title}</NavLink>
             </li>
           ))}
