@@ -3,6 +3,18 @@ import classes from "./page.module.css";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+export const generateMetadata = async ({ params }) => {
+  const meal = getMeal(params.slug);
+
+  if (!meal) {
+    notFound();
+  }
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+};
 const MealDetailsPage = ({ params }) => {
   const meal = getMeal(params.slug);
 
