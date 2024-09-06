@@ -1,5 +1,6 @@
 "use server";
 
+import { uploadImage } from "@/lib/clodinary";
 import { storePost } from "@/lib/posts";
 import { redirect } from "next/navigation";
 
@@ -24,8 +25,15 @@ export async function createPost(prevState, formData) {
     return { errors };
   }
 
-  storePost({
-    imageUrl: "",
+  let imageUrl;
+  try {
+    imageUrl = await uploadImage(image);
+  } catch (error) {
+    throw new Error("Image upload failed");
+  }
+
+  await storePost({
+    imageUrl: imageUrl,
     title,
     content,
     userId: 1,
