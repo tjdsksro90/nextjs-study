@@ -6,7 +6,9 @@ import Messages from "@/components/messages";
 
 export default async function MessagesPage() {
   // unstable_noStore(); // 함수내에서 명시적으로 사용하기에 권장
-  const response = await fetch("http://localhost:8080/messages");
+  const response = await fetch("http://localhost:8080/messages", {
+    next: { tag: ["msg"] },
+  });
   const messages = await response.json();
 
   if (!messages || messages.length === 0) {
